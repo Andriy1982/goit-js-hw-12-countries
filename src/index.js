@@ -8,12 +8,11 @@ import {
 import fetchCountries from './js/fetch-countries';
 import error from './js/alert.js';
 
-const debounce = require('lodash.debounce');
+import { debounce } from 'lodash-es';
 
 const debounsCallback = debounce(hendleInput, 1000);
 
-function hendleInput(event) {
-  const value = event.target.value;
+function hendleInput({ target: { value } }) {
   clearCountry();
   if (!value) return;
   fetchCountries(value).then(data => {
